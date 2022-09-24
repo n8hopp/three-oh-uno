@@ -47,13 +47,13 @@
         <com.example.three_oh_uno.TableView
             android:id="@+id/tableView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="0dp"
+            android:layout_weight="5" />
 
         <com.example.three_oh_uno.HandView
             android:id="@+id/handView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1" />
 
     </LinearLayout>
