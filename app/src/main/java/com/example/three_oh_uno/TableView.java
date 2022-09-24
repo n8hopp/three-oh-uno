@@ -17,9 +17,14 @@ public class TableView extends SurfaceView {
 	private int halfCardHeight;
 	public TableView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+
+		setWillNotDraw(false);
+
 		paint1 = new Paint();
 		paint2 = new Paint();
+
 		tableColor = new Paint();
+
 		paint1.setARGB(255, 255, 255, 255);
 		paint2.setARGB(255, 255, 0, 0); // Two separate colors to differentiate stacked rectangles if the rectangles are stacked
 												   // or to make text on cards the opposite color
