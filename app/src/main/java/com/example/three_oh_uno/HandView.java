@@ -9,10 +9,12 @@ import android.view.SurfaceView;
 
 public class HandView extends SurfaceView {
 
-    public static final int cardHeight = 200;
-    public static final int cardWidth = 120;
-    public static final int cardBorder = 10;
+    public static final int cardHeight = 300;
+    public static final int cardWidth = 200;
+    public static final int cardBorder = 25;
     public static final int cardSpacing = 30;
+    public static final int xOffset = 500;
+    public static final int yOffset = 50;
 
     Paint cardPaint = new Paint();
     Paint cardBorderPaint = new Paint();
@@ -38,11 +40,16 @@ public class HandView extends SurfaceView {
     public void onDraw(Canvas canvas) {
         canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), backgroundPaint);
 
-        int xOffset = 500;
-
         for (int i = 0; i < 6; i ++) {
-            canvas.drawRect( xOffset + i * 130 + 10, 10, xOffset + i * 130 + cardWidth, cardHeight, cardBorderPaint);
-            canvas.drawRect(xOffset + i * 130 + 20, 20, xOffset + i * 130 + cardWidth - cardBorder, cardHeight - cardBorder, cardPaint);
+            canvas.drawRect( xOffset + i * (cardSpacing + cardWidth),
+                    yOffset,
+                    xOffset + i * (cardSpacing + cardWidth) + cardWidth,
+                    yOffset + cardHeight, cardBorderPaint);
+
+            canvas.drawRect(xOffset + i * (cardSpacing + cardWidth) + cardBorder,
+                    yOffset + cardBorder,
+                    xOffset + i * (cardSpacing + cardWidth) + cardWidth - cardBorder,
+                    yOffset + cardHeight - cardBorder, cardPaint);
         }
     }
 }
