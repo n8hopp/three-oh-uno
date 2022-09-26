@@ -52,7 +52,7 @@ public class TableView extends SurfaceView {
 		textPaint.setTextAlign(Paint.Align.CENTER);
 
 		textPaint2.setTextSize(100); // Only text this paint uses currently is the number on top of face up card
-		//cardPaint.setFakeBoldText(true);
+		textPaint2.setFakeBoldText(true);
 		textPaint.setTextSize(45);
 
 		// paint2.setTextSize(paint1.getTextSize());
@@ -81,7 +81,7 @@ public class TableView extends SurfaceView {
 		// Face up middle card
 		canvas.drawRect((getWidth()/2)+25,  (getHeight()/2)-150, (getWidth()/2)+225, (getHeight()/2)+150, cardPaint); //
 				// Lukas: Added 30 pixel border to match HandView
-		canvas.drawRect((getWidth()/2)+25+30,  (getHeight()/2)-150+30, (getWidth()/2)+225-30, (getHeight()/2)+150-30, faceUp);
+		canvas.drawRect((getWidth()/2)+25+25,  (getHeight()/2)-150+25, (getWidth()/2)+225-25, (getHeight()/2)+150-25, faceUp);
 				// Draw big number on card
 
 		canvas.drawText("7", getWidth()/2 + 100, getHeight()/2 +30 , textPaint2);
