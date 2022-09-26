@@ -14,7 +14,7 @@ public class HandView extends SurfaceView {
     public static final int cardBorder = 25;
     public static final int cardSpacing = 30;
     public static final int xOffset = 500;
-    public static final int yOffset = 50;
+    public static final int yOffset = 60;
 
     Paint redPaint = new Paint();
     Paint bluePaint = new Paint();
@@ -47,7 +47,7 @@ public class HandView extends SurfaceView {
 
         cardBorderPaint.setColor(0xFF000000);  //black
         cardBorderPaint.setStyle(Paint.Style.FILL);
-        backgroundPaint.setColor(0xFF949494);  //gray
+        backgroundPaint.setARGB(255, 66, 143, 70);  //green
         backgroundPaint.setStyle(Paint.Style.FILL);
 
         unoTextPaint.setColor(Color.BLACK);

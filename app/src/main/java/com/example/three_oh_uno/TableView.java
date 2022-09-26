@@ -85,10 +85,11 @@ public class TableView extends SurfaceView {
 				// Draw big number on card
 
 		canvas.drawText("7", getWidth()/2 + 100, getHeight()/2 +30 , textPaint2);
-
+		canvas.drawText("PLACE", getWidth()/2+125,  (getHeight()/2)+200, textPaint);
 
 		// Face down middle card
 		canvas.drawRect((getWidth()/2)-225,  (getHeight()/2)-150, (getWidth()/2)-25, (getHeight()/2)+150, cardPaint);
+		canvas.drawText("DRAW", getWidth()/2-125,  (getHeight()/2)+200, textPaint);
 
 		/* Nate:
 			This is all godawful. Please make this dynamic ASAP. I cannot deal with manually
