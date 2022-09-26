@@ -11,14 +11,18 @@ public class TableView extends SurfaceView {
 
 	private final Paint cardPaint;
 	private final Paint textPaint;
+	private final Paint textPaint2;
 	private final Paint tableColor;
 	private final Paint arrowPaint;
+
 	private Paint faceUp;
 	private Path arrowPath;
 	private int canvasWidth;
 	private int canvasHeight;
 	private int halfCardWidth;
 	private int halfCardHeight;
+
+
 	public TableView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
@@ -29,10 +33,12 @@ public class TableView extends SurfaceView {
 		arrowPaint = new Paint();
 		faceUp = new Paint();
 		tableColor = new Paint();
+		textPaint2 = new Paint();
 
 		cardPaint.setARGB(255, 0, 0, 0); // Set default color of black face down uno card
-		textPaint.setARGB(255, 255, 255, 255); // Two separate colors to differentiate stacked rectangles if the rectangles are stacked
-												   // or to make text on cards the opposite color
+		textPaint.setARGB(255, 255, 255, 255); // Text color white
+		textPaint2.setARGB(255,255,255,255);
+
 		tableColor.setARGB(255, 66, 143, 70);
 		tableColor.setStyle(Paint.Style.FILL);
 
@@ -45,9 +51,10 @@ public class TableView extends SurfaceView {
 		cardPaint.setTextAlign(Paint.Align.CENTER);
 		textPaint.setTextAlign(Paint.Align.CENTER);
 
-		cardPaint.setTextSize(100); // Only text this paint uses currently is the number on top of face up card
+		textPaint2.setTextSize(100); // Only text this paint uses currently is the number on top of face up card
 		//cardPaint.setFakeBoldText(true);
 		textPaint.setTextSize(45);
+
 		// paint2.setTextSize(paint1.getTextSize());
 					// Lukas: Refactored paint1 and paint2 to have descriptive names, and be black face down cards
 
@@ -77,7 +84,7 @@ public class TableView extends SurfaceView {
 		canvas.drawRect((getWidth()/2)+25+30,  (getHeight()/2)-150+30, (getWidth()/2)+225-30, (getHeight()/2)+150-30, faceUp);
 				// Draw big number on card
 
-		canvas.drawText("4", ((getWidth()/2)+60), (getWidth()/2) + 30, textPaint);
+		canvas.drawText("7", getWidth()/2 + 100, getHeight()/2 +30 , textPaint2);
 
 
 		// Face down middle card
