@@ -3,6 +3,7 @@ package com.example.three_oh_uno;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
@@ -11,6 +12,8 @@ public class TableView extends SurfaceView {
 	private final Paint paint1;
 	private final Paint paint2;
 	private final Paint tableColor;
+	private final Paint arrowPaint;
+	private Path arrowPath;
 	private int canvasWidth;
 	private int canvasHeight;
 	private int halfCardWidth;
@@ -22,6 +25,7 @@ public class TableView extends SurfaceView {
 
 		paint1 = new Paint();
 		paint2 = new Paint();
+		arrowPaint = new Paint();
 
 		tableColor = new Paint();
 
@@ -31,11 +35,17 @@ public class TableView extends SurfaceView {
 		tableColor.setARGB(255, 66, 143, 70);
 		tableColor.setStyle(Paint.Style.FILL);
 
+		arrowPaint.setARGB(255, 0, 255, 255);
+		arrowPaint.setStyle(Paint.Style.FILL);
+		arrowPath = new Path();
+
+
 		paint1.setTextAlign(Paint.Align.CENTER);
 		paint2.setTextAlign(Paint.Align.CENTER);
 
 		paint1.setTextSize(45);
 		paint2.setTextSize(paint1.getTextSize());
+
 
 	}
 
@@ -64,6 +74,21 @@ public class TableView extends SurfaceView {
 			This is all godawful. Please make this dynamic ASAP. I cannot deal with manually
 			adjusting text location 5 pixels at a time. God save me.
 		 */
+
+		// Draw an arrow in front of hand
+		arrowPath.moveTo(getWidth()/2, (getHeight()/8)*7); // Beginning location center of 3/4 down the screen
+		arrowPath.lineTo(getWidth()/2 - 60, (getHeight()/8)*7); // Tip of arrow pointing left
+		arrowPath.lineTo(getWidth()/2 - 20, (getHeight()/8)*7 - 20);
+		arrowPath.lineTo(getWidth()/2 - 20, (getHeight()/8)*7 - 10);
+		arrowPath.lineTo(getWidth()/2 + 60, (getHeight()/8)*7 - 10);
+		arrowPath.lineTo(getWidth()/2 + 60, (getHeight()/8)*7 + 10);
+
+		arrowPath.lineTo(getWidth()/2 - 20, (getHeight()/8)*7 + 10);
+		arrowPath.lineTo(getWidth()/2 - 20, (getHeight()/8)*7 + 20);
+		arrowPath.lineTo(getWidth()/2 - 60, getHeight()/8*7); // Tip of arrow pointing left
+		canvas.drawPath(arrowPath, arrowPaint);
+
+		arrowPath.reset();
 
 	}
 }
