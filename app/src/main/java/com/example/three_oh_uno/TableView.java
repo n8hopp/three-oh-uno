@@ -21,7 +21,7 @@ public class TableView extends SurfaceView {
 	private int canvasHeight;
 	private int halfCardWidth;
 	private int halfCardHeight;
-
+	private Card testCard;
 
 	public TableView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -34,7 +34,7 @@ public class TableView extends SurfaceView {
 		faceUp = new Paint();
 		tableColor = new Paint();
 		textPaint2 = new Paint();
-
+		testCard = new Card();
 		cardPaint.setARGB(255, 0, 0, 0); // Set default color of black face down uno card
 		textPaint.setARGB(255, 255, 255, 255); // Text color white
 		textPaint2.setARGB(255,255,255,255);
@@ -63,6 +63,7 @@ public class TableView extends SurfaceView {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
+
 		//Background
 		canvas.drawRect(0, 0, (getWidth()), (getHeight()), tableColor);
 
@@ -91,6 +92,7 @@ public class TableView extends SurfaceView {
 		canvas.drawRect((getWidth()/2)-225,  (getHeight()/2)-150, (getWidth()/2)-25, (getHeight()/2)+150, cardPaint);
 		canvas.drawText("DRAW", getWidth()/2-125,  (getHeight()/2)+200, textPaint);
 
+		testCard.draw(canvas);
 		/* Nate:
 			This is all godawful. Please make this dynamic ASAP. I cannot deal with manually
 			adjusting text location 5 pixels at a time. God save me.
