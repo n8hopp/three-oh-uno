@@ -12,9 +12,44 @@ public class Card {
     private Paint strokePaint;
     private Paint mainLabelPaint;
     private Paint miniLabelPaint;
-    private CardColor cardColor;
-    private int cardNumber; // TODO: Designate 10, 11, 12, 13, 14 to +2, +4, Switch, Skip, and Wildcard
-                            // Possible: If number is negative, designate card is an enemy's deck?
+    private CardColor color;
+    private Face face;
+
+    public enum Face //
+    {
+        ZERO(0),
+        ONE(1),
+        TWO(2),
+        THREE(3),
+        FOUR(4),
+        FIVE(5),
+        SIX(6),
+        SEVEN(7),
+        EIGHT(8),
+        NINE(9),
+        REVERSE(10),
+        SKIP(11),
+        DRAWTWO(12),
+        DRAWFOUR(13),
+        WILD(14);
+
+        private int faceID;
+
+        Face(int ID) {
+            this.faceID = ID;
+        }
+
+    }
+
+    public enum CardColor
+    {
+        RED(0),BLUE(1),GREEN(2),YELLOW(3),BLACK(4);
+        private int colorID;
+
+        CardColor(int ID) {
+            this.colorID = ID;
+        }
+    }
     public Card()
     {
         x = y = 300;
@@ -34,18 +69,19 @@ public class Card {
         miniLabelPaint.setTextSize(width/4);
         mainLabelPaint.setTextAlign(Paint.Align.CENTER);
         miniLabelPaint.setTextAlign(Paint.Align.CENTER);
-        cardNumber = 0;
+        face = Face.ZERO;
+        color = CardColor.BLACK;
 
-        setCardColor(CardColor.CARD_RED);
+        setPaintfromEnum(CardColor.RED);
     }
 
-    public Card(float _x, float _y, float _width, float _length, CardColor _cardColor)
+    public Card(float _x, float _y, float _width, float _length, Card _card)
     {
         x = _x;
         y = _y;
         width = _width;
         length = _length;
-        cardColor = _cardColor;
+        setPaintfromEnum(_card.cardColor);
     }
     /* DrawRect, by default, takes the distance of the left edge from the left edge of the canvas
     and vice-versa for the coordinates, instead of from a center point like drawCircle.
@@ -79,24 +115,23 @@ public class Card {
         y = _y;
     }
 
-    public void setCardColor(CardColor _cardColor)
+    public void setPaintfromEnum(CardColor _cardColor)
     {
-        cardColor = _cardColor;
-        switch(cardColor)
+        switch(_cardColor)
         {
-            case CARD_NULL: case CARD_BLACK:
+            case BLACK:
                 paint.setARGB(255, 0, 0,0);
                 break;
-            case CARD_RED:
+            case RED:
                 paint.setColor(0xFFC40C00);
                 break;
-            case CARD_BLUE:
+            case BLUE:
                 paint.setColor(0xFF0849A3);
                 break;
-            case CARD_GREEN:
+            case GREEN:
                 paint.setColor(0xFF358716);
                 break;
-            case CARD_YELLOW:
+            case YELLOW:
                 paint.setColor(0xFFE5D30C);
                 break;
         }
@@ -106,11 +141,24 @@ public class Card {
     {
         float mainTextY = y - (mainLabelPaint.descent() + mainLabelPaint.ascent()) / 2;
         float miniTextY = y - (miniLabelPaint.descent() + miniLabelPaint.ascent()) / 2;
-        if(cardNumber < 10 && cardNumber >= 0)
-        {
-            canvas.drawText(String.valueOf(cardNumber), x, mainTextY, mainLabelPaint);
-            canvas.drawText(String.valueOf(cardNumber), (float)(x-width*0.35), (float)(miniTextY-length*0.35), miniLabelPaint);
-            canvas.drawText(String.valueOf(cardNumber), (float)(x+width*0.35), (float)(miniTextY+length*0.35), miniLabelPaint);
+
+        switch(face) {
+
+            case SKIP:
+                break;
+            case DRAWTWO:
+                break;
+            case DRAWFOUR:
+                break;
+            case WILD:
+                break;
+            case REVERSE:
+
+            default:
+                canvas.drawText(String.valueOf(face.faceID), x, mainTextY, mainLabelPaint);
+                canvas.drawText(String.valueOf(face.faceID), (float)(x-width*0.35), (float)(miniTextY-length*0.35), miniLabelPaint);
+                canvas.drawText(String.valueOf(face.faceID), (float)(x+width*0.35), (float)(miniTextY+length*0.35), miniLabelPaint);
+                break;
         }
         // if(cardNumber > 10)
 
